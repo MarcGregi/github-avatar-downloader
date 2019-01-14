@@ -25,13 +25,14 @@ function getRepoContributors(repoOwner, repoName, cb) {
 
 function downloadImageByURL(url, filePath) {
   request(url).pipe(fs.createWriteStream(filePath))
-
-  // console.log('URL: ', url);
-  // console.log("File: ", filePath);
 }
 
-downloadImageByURL("https://avatars2.githubusercontent.com/u/2741?v=3&s=466", "picture.jpeg")
-// getRepoContributors("jquery", "jquery", function(err, result) {
-//   console.log("Errors:", err);
-//   console.log("Result:", result);
-// });
+
+getRepoContributors("jquery", "jquery", function(err, result) {
+  console.log("Errors:", err);
+  result.forEach(function(ava) {
+    var url = ava.avatar_url;
+    var login = ava.login;
+    downloadImageByURL(url, login);
+  })
+});
