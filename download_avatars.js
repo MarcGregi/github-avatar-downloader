@@ -28,16 +28,16 @@ function downloadImageByURL(url, filePath) {
 
 
 console.log('Welcome to the GitHub Avatar Downloader!');
-var images = './images';
-if (!fs.existsSync(images)){
-    fs.mkdirSync(images);
+var avatars = './avatars';
+if (!fs.existsSync(avatars)){
+    fs.mkdirSync(avatars);
 }
 
 getRepoContributors(repoOwner, repoName, function(err, result) {
   console.log("Errors:", err);
   result.forEach(function(ava) {
     var url = ava.avatar_url;
-    var login = images + "/" + ava.login + '.jpeg';
+    var login = avatars + "/" + ava.login + '.jpeg';
     downloadImageByURL(url, login);
   })
 });
